@@ -3,8 +3,9 @@ Research for k-Anonymity Privacy Preserving Data Mining based on Entropy
 
 ## Contents
 
-*[Process](#Process)
-*[Functions](#Functions)
+*[Process](##Process)
+
+*[Functions](##Functions)
 
 
 ## Process
