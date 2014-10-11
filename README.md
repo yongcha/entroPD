@@ -3,11 +3,11 @@ Research for k-Anonymity Privacy Preserving Data Mining based on Entropy
 
 # Contents
 
-*[Process](#process)
+- [Process](#process)
 
-*[Functions](#functions)
+- [Functions](#functions)
 
-*[Team Members](#team-members)
+- [Team Members](#team-members)
 
 
 # <a name="process"></a>Process
@@ -16,15 +16,15 @@ Research for k-Anonymity Privacy Preserving Data Mining based on Entropy
 
 # <a name="functions"></a>Functions
 
-*`parda`
-*`cpselec`
-*`rpaclass`
-*`lanode`
-*`qigrp`
-*`eclass`
-*`resume`
-*`plot.resume`
+- `parda`
+- `cpselec`
+- `rpaclass`
+- `lanode`
+- `qigrp`
+- `eclass`
+- `resume`
+- `plot.resume`
 
 
 # <a name="team-members"></a>Team Members
-*"Yong Cha" <yong.stat@gmail.com>
+- "Yong Cha" <yong.stat@gmail.com>
