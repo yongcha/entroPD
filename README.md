@@ -3,16 +3,16 @@ Research for k-Anonymity Privacy Preserving Data Mining based on Entropy
 
 ## Contents
 
-[Process](##Process)
+- [Process](##Process)
 
-[Functions](##Functions)
+- [Functions](##Functions)
 
 
-## Process
+## <a name="Process"></a>Process
 ![Process](./process.PNG)
 
 
-## Functions
+## <a name="Functions"></a>Functions
 
 - `parda`
 - `cpselec`
