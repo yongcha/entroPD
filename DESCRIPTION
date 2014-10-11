@@ -1,0 +1,9 @@
+Package: entroPD
+Type: Package
+Title: Anonymization based on Entropy
+Version: 1.0
+Date: 2014-10-12
+Author: Yong Cha <yong.stat@gmail.com>
+Maintainer: Yong Cha <yong.stat@gmail.com>
+Description: k-Anonymity Privacy Preserving Data Mining based on Entropy
+License: MIT
