@@ -110,7 +110,7 @@ rpaclass <- function(dat, cp = 0.01, loss.mat = matrix(c(0,1,2,0), ncol=2), cval
   # Adding Progress Bar to '*apply' Functions
   
   # mclapply.hack.R sourcing
-  source('./mclapply.hack.R')
+  source('../mclapply.hack.R')
   
   # `parda`에서 return된 object의 attr을 가져옴
   ta <- attr(dat, 'TA') # TA
