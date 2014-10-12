@@ -475,7 +475,7 @@ resume <- function(dat, kanon = 3, maxsup = 0.01, ...){
 #' @param ...
 #' @return Plot
 plot.resume <- function(obj, ...){
-  
+
   require(ggplot2)
   
   multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
@@ -511,11 +511,11 @@ plot.resume <- function(obj, ...){
   } 
   
   # suppression
-  s <- ggplot(data = obj, aes(x = supp_rank, y = supp)) + geom_line() + geom_point()
+  s <- ggplot(data = obj, aes(x = supp_rank, y = supp)) + geom_line(aes(group=1)) + geom_point()
   # DM
-  d <- ggplot(data = obj, aes(x = DM_rank, y = DM)) + geom_line() + geom_point()
+  d <- ggplot(data = obj, aes(x = DM_rank, y = DM)) + geom_line(aes(group=1)) + geom_point()
   # Entropy
-  e <- ggplot(data = obj, aes(x = Ent_rank, y = Entropy)) + geom_line() + geom_point()
+  e <- ggplot(data = obj, aes(x = Ent_rank, y = Entropy)) + geom_line(aes(group=1)) + geom_point()
   
   multiplot(s, d, e)  
 }
