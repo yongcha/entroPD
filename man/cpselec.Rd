@@ -10,7 +10,7 @@ cpselec(n = 10, len = 100, m = 2, ...)
 
 \item{len}{number of samples}
 
-\item{m}{number of cp sample matrix rows (less than )}
+\item{m}{number of cp sample matrix rows}
 
 \item{...}{}
 }

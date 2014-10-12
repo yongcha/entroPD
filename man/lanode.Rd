@@ -8,7 +8,7 @@ lanode(obj, mc = FALSE, ...)
 \arguments{
 \item{obj}{\code{rpaclass} object}
 
-\item{mc}{if TRUE \code{mclapply} applied, FALse \code{lapply} applied (default).}
+\item{mc}{if TRUE \code{mclapply} applied, FALSE \code{lapply} applied (default).}
 
 \item{...}{}
 }
