@@ -189,7 +189,7 @@ rpaclass <- function(dat, cp = 0.01, loss.mat = matrix(c(0,1,2,0), ncol=2), cval
 #' Create a Lattice Node
 #' 
 #' @param obj \code{rpaclass} object
-#' @param mc if TRUE \code{mclapply} applied, FALse \code{lapply} applied (default).
+#' @param mc if TRUE \code{mclapply} applied, FALSE \code{lapply} applied (default).
 #' @param ...
 #' @return Created Lattice Node using result of QI Classing
 lanode <- function(obj, mc = FALSE, ...){
