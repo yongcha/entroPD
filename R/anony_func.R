@@ -27,7 +27,7 @@ parda <- function(dat, QI, TA, ...){
   # dat : Original data
   # QI : Quasi-identifiers
   # TA : Target Attribute
-  
+
   # Partition data
   data.QI <- subset(dat, select = c(QI, TA))
   
@@ -48,7 +48,7 @@ parda <- function(dat, QI, TA, ...){
 #' 
 #' @param n number of cp intervals
 #' @param len number of samples
-#' @param m number of cp sample matrix rows (less than )
+#' @param m number of cp sample matrix rows
 #' @param ...
 #' @return Selected CP values
 cpselec <- function(n = 10, len = 100, m = 2, ...){
