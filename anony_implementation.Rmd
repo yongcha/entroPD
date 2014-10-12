@@ -1,0 +1,151 @@
+---
+title: "anony_implementation"
+author: "Yong Cha"
+output: 
+  html_document:
+    toc: yes
+    toc_depth: 2
+    number_sections: true
+    
+---
+
+
+# Package Loading
+```{r package, message=FALSE}
+require(devtools)
+install_github('entroPD', 'yongcha')
+require(entroPD)
+```
+
+
+
+# Implementation
+
+## Data Import
+```{r load, echo=FALSE}
+load('./data/data_adult.Rdata')
+```
+
+```{r data}
+str(adult)
+```
+
+
+## Partition Data
+
+### Define Attributes
+
+* 데이터를 파티션하기 위헤 변수의 속성을 정의해줌
+    * __Attributes (or Identifier)__ : (확실한) 식별자
+        * SSN, Address, Name 등
+    * __Target Attributes (TA)__ : 분석할 때 반응변수에 해당되는 목표 변수 
+    * __Quasi-Identifiers (QI)__ : 불분명한 식별자
+        * zip code, birthdate, gender 등
+    * __Sensitive Attirbutes (SA)__ : 개인과 관련된 민감한 정보
+        * 질병질환 정보, 연봉 등
+    * __Insensitive Attributes (IS)__ : 민감하지 않은 기타 정보
+    
+
+```{r part}
+# TA (Target)
+TA <- c('income')
+# QI (Quasi-Identifiers)
+QI <- c('age', 'workclass', 'education', 'marital.status', 'occupation', 'race', 'sex', 'native.country')
+#QI <- c('age', 'workclass', 'education', 'marital.status')
+# SA (Sensitive Attributes)
+SA <- c('capital.gain', 'capital.loss')
+# IS (Insensitive)
+IS <- c('relationship', 'hours.per.week', 'education.num')
+# Remove
+RM <- c('fnlwgt')
+```
+
+### `parda` 함수 적용
+
+```
+adult.QI <- parda(adult, QI, TA)
+```
+```{r}
+str(adult.QI)
+```
+
+
+
+## `cpselec` 함수 적용
+
+```
+cp.val <- cpselec(10, 100, 2)
+```
+```{r}
+cp.val
+```
+
+
+
+## `rpaclass` 함수 적용
+
+### `lapply` 적용 
+
+```
+cp.res <- rpaclass(adult.QI, cp.val, matrix(c(0,1,2,0), ncol=2), cval = 100)
+```
+
+### `mclapply` 적용
+```
+cp.res.mc <- rpaclass(adult.QI, cp.val, matrix(c(0,1,2,0), ncol=2), cval = 100, mc = TRUE)
+
+```
+```{r}
+cp.res[[1]]
+```
+
+
+## `lanode` 함수 적용
+
+```
+node.res <- lanode(cp.res.la)
+```
+
+```{r}
+node.res[[30]]
+```
+
+
+## `qigrp` 함수 적용
+
+```
+qigrp.res <- qigrp(adult.QI, node.res, mcs=8)
+```
+
+```{r, results='asis'}
+knitr::kable(head(qigrp.res[[30]], 20))
+```
+
+
+## `eclass` 함수 적용
+
+```
+equiclass <- eclass(qigrp.res, QI, TA
+```
+
+```{r, results='asis'}
+knitr::kable(head(equiclass[[30]], 20))
+```
+
+
+
+## `resume` 함수 적용
+
+```
+measure.res <- resume(equiclass, kanon = 5, maxsup = 0.01)
+```
+
+```{r, results='asis'}
+knitr::kable(head(measure.res, 20))
+```
+
+
+## `plot.resume` 함수 적용
+```{r plot, message=FALSE, fig.align='center', fig.height=7, fig.width=11, fig.cap='Figure 1'}
+plot(measure.res)
+```
