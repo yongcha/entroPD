@@ -88,7 +88,7 @@ cpselec <- function(n = 10, len = 100, m = 2, ...){
 #' @param cp Cost Complexity Parameter. \code{cpselec} object
 #' @param loss.mat Loss matrix
 #' @param cval number of cross-validations
-#' @param mc if TRUE \code{mclapply} applied, FALse \code{lapply} applied (default).
+#' @param mc if TRUE \code{mclapply} applied, FALSE \code{lapply} applied (default).
 #' @param ...
 #' @return Classed a Quasi-Identifiers by CP using Entropy
 rpaclass <- function(dat, cp = 0.01, loss.mat = matrix(c(0,1,2,0), ncol=2), cval=10, mc = FALSE, ...){
