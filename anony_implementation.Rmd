@@ -62,10 +62,8 @@ RM <- c('fnlwgt')
 
 ### `parda` 함수 적용
 
-```
+```{r parda}
 adult.QI <- parda(adult, QI, TA)
-```
-```{r}
 str(adult.QI)
 ```
 
@@ -73,10 +71,8 @@ str(adult.QI)
 
 ## `cpselec` 함수 적용
 
-```
+```{r cpselec}
 cp.val <- cpselec(10, 100, 2)
-```
-```{r}
 cp.val
 ```
 
@@ -84,51 +80,40 @@ cp.val
 
 ## `rpaclass` 함수 적용
 
+### `mclapply` 적용
+
+```{r rpamc, eval=FALSE}
+cp.res.mc <- rpaclass(adult.QI, cp.val, matrix(c(0,1,2,0), ncol=2), cval = 100, mc = TRUE)
+```
+
 ### `lapply` 적용 
 
-```
+```{r rpal}
 cp.res <- rpaclass(adult.QI, cp.val, matrix(c(0,1,2,0), ncol=2), cval = 100)
-```
-
-### `mclapply` 적용
-```
-cp.res.mc <- rpaclass(adult.QI, cp.val, matrix(c(0,1,2,0), ncol=2), cval = 100, mc = TRUE)
-
-```
-```{r}
 cp.res[[1]]
 ```
 
 
 ## `lanode` 함수 적용
 
-```
+```{r lanode}
 node.res <- lanode(cp.res.la)
-```
-
-```{r}
 node.res[[30]]
 ```
 
 
 ## `qigrp` 함수 적용
 
-```
+```{r qigrp, results='asis'}
 qigrp.res <- qigrp(adult.QI, node.res, mcs=8)
-```
-
-```{r, results='asis'}
 knitr::kable(head(qigrp.res[[30]], 20))
 ```
 
 
 ## `eclass` 함수 적용
 
-```
+```{r eclass, results='asis'}
 equiclass <- eclass(qigrp.res, QI, TA
-```
-
-```{r, results='asis'}
 knitr::kable(head(equiclass[[30]], 20))
 ```
 
@@ -136,11 +121,8 @@ knitr::kable(head(equiclass[[30]], 20))
 
 ## `resume` 함수 적용
 
-```
+```{r resume, results='asis'}
 measure.res <- resume(equiclass, kanon = 5, maxsup = 0.01)
-```
-
-```{r, results='asis'}
 knitr::kable(head(measure.res, 20))
 ```
 
