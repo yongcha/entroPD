@@ -113,7 +113,7 @@ knitr::kable(head(qigrp.res[[30]], 20))
 ## `eclass` 함수 적용
 
 ```{r eclass, results='asis'}
-equiclass <- eclass(qigrp.res, QI, TA
+equiclass <- eclass(qigrp.res, QI, TA)
 knitr::kable(head(equiclass[[30]], 20))
 ```
 
