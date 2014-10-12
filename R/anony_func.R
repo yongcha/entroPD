@@ -89,10 +89,9 @@ cpselec <- function(n = 10, len = 100, m = 2, ...){
 #' @param loss.mat Loss matrix
 #' @param cval number of cross-validations
 #' @param mc if TRUE \code{mclapply} applied, FALse \code{lapply} applied (default).
-#' @param mcs number of cores
 #' @param ...
 #' @return Classed a Quasi-Identifiers by CP using Entropy
-rpaclass <- function(dat, cp = 0.01, loss.mat = matrix(c(0,1,2,0), ncol=2), cval=10, mc = FALSE, mcs = NULL, ...){
+rpaclass <- function(dat, cp = 0.01, loss.mat = matrix(c(0,1,2,0), ncol=2), cval=10, mc = FALSE, ...){
   # Description : QI classing by cp
   #
   # Arguments
@@ -101,7 +100,6 @@ rpaclass <- function(dat, cp = 0.01, loss.mat = matrix(c(0,1,2,0), ncol=2), cval
   # loss.mat : loss matrix
   # cval : # of cross-validation
   # mc : if TRUE (use mclapply), FALSE (default, use lapply)
-  # mcs : # of cores
   
   # 필요 패키지 불러오기
   require(rpart)
@@ -110,7 +108,7 @@ rpaclass <- function(dat, cp = 0.01, loss.mat = matrix(c(0,1,2,0), ncol=2), cval
   # Adding Progress Bar to '*apply' Functions
   
   # mclapply.hack.R sourcing
-  source('../mclapply.hack.R')
+  source('http://www.stat.cmu.edu/~nmv/setup/mclapply.hack.R')
   
   # `parda`에서 return된 object의 attr을 가져옴
   ta <- attr(dat, 'TA') # TA
@@ -170,8 +168,8 @@ rpaclass <- function(dat, cp = 0.01, loss.mat = matrix(c(0,1,2,0), ncol=2), cval
                  else {'None'}
                  # QI factor level < 5
                  # 이 때는 'None'이라고 결과값을 리턴
-               }, num = mcs)
-    }, num = mcs)
+               })
+    })
   }
   
   class(cp.res) <- c('rpaclass', 'list')
@@ -192,21 +190,20 @@ rpaclass <- function(dat, cp = 0.01, loss.mat = matrix(c(0,1,2,0), ncol=2), cval
 #' 
 #' @param obj \code{rpaclass} object
 #' @param mc if TRUE \code{mclapply} applied, FALse \code{lapply} applied (default).
-#' @param mcs number of cores
 #' @param ...
 #' @return Created Lattice Node using result of QI Classing
-lanode <- function(obj, mc = FALSE, mcs = NULL, ...){
+lanode <- function(obj, mc = FALSE, ...){
   # Description : Lattice Node
   # 
   # Arguments
   # obj : cpctrl object
   # mc : if TRUE (use mclapply), FALSE (default, use lapply)
-  # mcs : # of Cores
   
   require(pbapply)
   # Adding Progress Bar to '*apply' Functions
-  source('./mclapply.hack.R')
+  
   # mclapply.hack.R sourcing
+  source('http://www.stat.cmu.edu/~nmv/setup/mclapply.hack.R')
   
   
   qi <- attr(obj, 'QI')
@@ -242,7 +239,7 @@ lanode <- function(obj, mc = FALSE, mcs = NULL, ...){
         obj[[ind]][[no]]
       }, num = mcs)
       
-    }, num = mcs)    
+    })    
   }
   
   # class 지정
@@ -266,7 +263,6 @@ lanode <- function(obj, mc = FALSE, mcs = NULL, ...){
 #' 
 #' @param dat \code{parda} object
 #' @param obj \code{lanode} object
-#' @param mcs number of cores
 #' @param ...
 #' @return Grouped Data by each lattice node 
 qigrp <- function(dat, obj, mcs = 4, ...){
@@ -275,10 +271,11 @@ qigrp <- function(dat, obj, mcs = 4, ...){
   # Arguments
   # dat : (QI, TA) subest data
   # obj : lanode object
-  # mcs : # of Cores
   
   require(mgcv) ## uniquecombs() : find the unique rows in a matrix
-  source('./mclapply.hack.R')
+  
+  # mclapply.hack.R sourcing
+  source('http://www.stat.cmu.edu/~nmv/setup/mclapply.hack.R')
   
   # Data to be grouped
   data.QI.GH <- dat
@@ -346,8 +343,7 @@ qigrp <- function(dat, obj, mcs = 4, ...){
       cat(paste('\n\n\n QI - ', i, ' : Completed >> \n\n\n'))
     }
     data.QI.GH
-  }, 
-  num = mcs)
+  })
   
   # class 지정
   class(data.QI.GH.res) <- c('qigrp', 'list')
