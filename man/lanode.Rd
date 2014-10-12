@@ -3,14 +3,12 @@
 \alias{lanode}
 \title{Create a Lattice Node}
 \usage{
-lanode(obj, mc = FALSE, mcs = NULL, ...)
+lanode(obj, mc = FALSE, ...)
 }
 \arguments{
 \item{obj}{\code{rpaclass} object}
 
 \item{mc}{if TRUE \code{mclapply} applied, FALse \code{lapply} applied (default).}
-
-\item{mcs}{number of cores}
 
 \item{...}{}
 }

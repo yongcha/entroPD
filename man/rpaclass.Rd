@@ -4,7 +4,7 @@
 \title{Classing QI by \code{rpart} function}
 \usage{
 rpaclass(dat, cp = 0.01, loss.mat = matrix(c(0, 1, 2, 0), ncol = 2),
-  cval = 10, mc = FALSE, mcs = NULL, ...)
+  cval = 10, mc = FALSE, ...)
 }
 \arguments{
 \item{dat}{\code{parda} object}
@@ -16,8 +16,6 @@ rpaclass(dat, cp = 0.01, loss.mat = matrix(c(0, 1, 2, 0), ncol = 2),
 \item{cval}{number of cross-validations}
 
 \item{mc}{if TRUE \code{mclapply} applied, FALse \code{lapply} applied (default).}
-
-\item{mcs}{number of cores}
 
 \item{...}{}
 }

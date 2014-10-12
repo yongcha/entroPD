@@ -10,8 +10,6 @@ qigrp(dat, obj, mcs = 4, ...)
 
 \item{obj}{\code{lanode} object}
 
-\item{mcs}{number of cores}
-
 \item{...}{}
 }
 \value{
