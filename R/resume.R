@@ -27,8 +27,8 @@ resume <- function(dat, kanon = 3, maxsup = 0.01, ...){
   # Information Loss
   loss.res <- pblapply(1:length(dat), function(x){
     # Discernibility Metric
-    DM <- sum(dat[[x]]$equi.size[which(dat[[x]]$equi.size >= 3)]^2) +
-      sum(sum(dat[[x]]$equi.size) * dat[[x]]$equi.size[which(dat[[x]]$equi.size < 3)])
+    DM <- sum(dat[[x]]$equi.size[which(dat[[x]]$equi.size >= kanon)]^2) +
+      sum(sum(dat[[x]]$equi.size) * dat[[x]]$equi.size[which(dat[[x]]$equi.size < kanon)])
     
     # Entropy
     ENTROPY <- -sum(dat[[x]]$equi.size * log2(dat[[x]]$equi.size / sum(dat[[x]]$equi.size)))
@@ -44,9 +44,9 @@ resume <- function(dat, kanon = 3, maxsup = 0.01, ...){
                            supp_rank = factor(rank(supp.res)), 
                            optimal = ifelse(supp.res < maxsup, '*', ''),
                            DM = loss.res$DM,
-                           DM_rank = factor(rank(loss.res$DM)),
+                           DM_rank = factor(rank(-loss.res$DM)),
                            Entropy = loss.res$ENTROPY,
-                           Ent_rank = factor(rank(loss.res$ENTROPY)))
+                           Ent_rank = factor(rank(-loss.res$ENTROPY)))
   
   # Class 지정
   class(resume.res) <- c('resume', 'data.frame')
